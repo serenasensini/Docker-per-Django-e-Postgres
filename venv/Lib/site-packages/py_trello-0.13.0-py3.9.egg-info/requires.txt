@@ -1,0 +1,4 @@
+requests
+requests-oauthlib>=0.4.1
+python-dateutil
+pytz

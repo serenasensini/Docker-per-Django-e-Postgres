@@ -24,7 +24,7 @@ else:
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
 
 SITE_ID = 1
 
@@ -84,15 +84,27 @@ WSGI_APPLICATION = 'djangogirls.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 POSTGRES_DB = os.getenv('POSTGRES_DB', 'djangogirls')
-POSTGRES_HOST = os.getenv('POSTGRES_HOST', 'localhost')
-POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', '')
+POSTGRES_HOST = os.getenv('POSTGRES_HOST', 'db')
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', 'postgres')
 POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
 POSTGRES_USER = os.getenv('POSTGRES_USER', 'postgres')
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(
-    default=f'postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}'
-)
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(
+#     default=f'postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}'
+# )
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'djangogirls',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PASSWORD': 'postgres',
+        'PORT': 5432,
+    }
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

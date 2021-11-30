@@ -1,0 +1,131 @@
+============
+Django Click
+============
+
+Project information:
+
+.. image:: https://img.shields.io/pypi/v/django-click.svg
+   :target: https://pypi.python.org/pypi/django-click
+
+.. image:: https://img.shields.io/pypi/dm/django-click.svg
+   :target: https://pypi.python.org/pypi/django-click
+
+.. image:: https://img.shields.io/badge/docs-TODO-lightgrey.svg
+   :target: http://django-click.readthedocs.org/en/latest/
+
+.. image:: https://img.shields.io/pypi/l/django-click.svg
+   :target: https://github.com/GaretJax/django-click/blob/master/LICENSE
+
+Automated code metrics:
+
+.. image:: https://img.shields.io/travis/GaretJax/django-click.svg
+   :target: https://travis-ci.org/GaretJax/django-click
+
+.. image:: https://img.shields.io/coveralls/GaretJax/django-click/master.svg
+   :target: https://coveralls.io/r/GaretJax/django-click?branch=master
+
+.. image:: https://img.shields.io/codeclimate/github/GaretJax/django-click.svg
+   :target: https://codeclimate.com/github/GaretJax/django-click
+
+.. image:: https://img.shields.io/requires/github/GaretJax/django-click.svg
+   :target: https://requires.io/github/GaretJax/django-click/requirements/?branch=master
+
+``django-click`` is a library to easily write Django management commands using the
+``click`` command line library.
+
+* Free software: MIT license
+* Documentation for the Click command line library: http://click.pocoo.org/6/
+* Compatible with Django 1.8, 1.10, and 1.11, running on Python 2.7, 3.4, 3.5, 3.6 and PyPy.
+
+
+Installation
+============
+
+::
+
+  pip install django-click
+
+
+Example
+=======
+
+Create a command module as you would usually do, but instead of creating a
+class, just put a ``djclick`` command into
+``<yourapp>/management/commands/helloworld.py``:
+
+.. code:: python
+
+   import djclick as click
+
+   @click.command()
+   @click.argument('name')
+   def command(name):
+       click.secho('Hello, {}'.format(name), fg='red')
+
+And then call the command with::
+
+   $ ./manage.py helloworld django-click
+   Hello, django-click
+
+Check out the `test commands
+<https://github.com/GaretJax/django-click/tree/master/djclick/test/testprj/testapp/management/commands>`_
+for additional example commands and advanced usage.
+
+
+=======
+History
+=======
+
+
+2.1.0 - 2018-04-20
+==================
+
+* Add experimental support for Django 2.0
+
+
+2.0.0 - 2017-06-30
+==================
+
+* Drop support for unsupported Django versions (1.4, 1.5, 1.6, and 1.7).
+* Add official support for Django 1.10 and 1.11.
+* Add official support for python 3.5 (all Django versions) and 3.6
+  (Django 1.11 only).
+* Correctly handle click errors by outputting the formatted messages instead
+  of a stack trace (#4).
+
+
+1.2.0 - 2016-05-19
+==================
+
+* Allow custom lookups on ``ModelInstance`` parameter types.
+
+
+1.1.0 - 2016-02-04
+==================
+
+* Add a ``ModelInstance`` parameter type to automatically retrieve model
+  instances by their primary key
+
+
+1.0.0 – 2015-09-14
+==================
+
+* Support for command groups
+* Added a ``pass_verbosity`` decorator
+* Improved test suite
+
+
+0.1.1 – 2015-09-11
+==================
+
+* Django 1.4, 1.5, 1.6, 1.7 and 1.8 compatibility
+* Python 2.7 and 3.4 compatibility
+* 100% coverage test suite
+
+
+0.1.0 – 2015-09-10
+==================
+
+* Initial release
+
+
